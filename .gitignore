@@ -1,0 +1,28 @@
+# Terraform files
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+.terraform/
+
+# Zip files
+*.zip
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local environment variables
+*.tfvars
+
+# Ignore specific directories
+terraform.tfstate.d/
+terraform_state/
+
+# Ignore libraries in src
+/src/*/certifi*
+/src/*/charset_normalizer*
+/src/*/idna*
+/src/*/requests*
+/src/*/urllib3*
+/src/*/bin*
+/src/problem_upload_website/index.html
