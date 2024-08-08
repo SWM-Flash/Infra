@@ -65,4 +65,6 @@ module "video_upload" {
 
   env_name = var.env_name
   account_id = local.account_id
+  lambda_execution_role_arn = module.iam.lambda_execution_role_arn
+  api_gateway_execution_arn = module.api_gateway.execution_arn
 }
