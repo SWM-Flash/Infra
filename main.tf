@@ -5,7 +5,7 @@ module "iam" {
 }
 
 module "lambda" {
-  source = "./modules/lambda"
+  source = "./modules/image_upload/lambda"
 
   lambda_execution_role_arn = module.iam.lambda_execution_role_arn
   api_gateway_execution_arn = module.api_gateway.execution_arn
@@ -30,7 +30,7 @@ module "api_gateway" {
 }
 
 module "s3" {
-  source     = "./modules/s3"
+  source     = "./modules/image_upload/s3"
 
   s3_bucket_name = local.s3_bucket_name
   origin_access_identity_arn = module.cloudfront.oai_arn
@@ -56,4 +56,13 @@ resource "aws_s3_object" "index" {
   content_type = "text/html"
 
   depends_on = [ module.s3.bucket_name, local_file.index_html ]
+}
+
+
+# video upload
+module "video_upload" {
+  source = "./modules/video_upload"
+
+  env_name = var.env_name
+  account_id = local.account_id
 }
