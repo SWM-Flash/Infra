@@ -13,3 +13,13 @@ module "lambda" {
 	input_bucket_name = module.s3.input_bucket_name
 	api_gateway_execution_arn = var.api_gateway_execution_arn
 }
+
+module "api_gateway" {
+	source = "./api_gateway"
+
+	rest_api_id = var.rest_api_id
+	root_resource_id = var.root_resource_id
+	stage_name = var.env_name
+	aws_region = var.aws_region
+	get_presigned_url_lambda_function_arn = module.lambda.get_presigned_url_arn
+}

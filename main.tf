@@ -63,8 +63,12 @@ resource "aws_s3_object" "index" {
 module "video_upload" {
   source = "./modules/video_upload"
 
-  env_name = var.env_name
-  account_id = local.account_id
+  aws_region                = var.aws_region
+  env_name                  = var.env_name
+  account_id                = local.account_id
   lambda_execution_role_arn = module.iam.lambda_execution_role_arn
+
   api_gateway_execution_arn = module.api_gateway.execution_arn
+  rest_api_id = module.api_gateway.rest_api_id
+  root_resource_id = module.api_gateway.root_resource_id
 }

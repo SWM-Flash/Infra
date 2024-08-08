@@ -13,6 +13,19 @@ variable "lambda_execution_role_arn" {
 	type        = string
 }
 
+
 variable "api_gateway_execution_arn" {
   description = "API Gateway의 실행 ARN"
+}
+
+variable "rest_api_id" {
+	description = "API Gateway의 ID"
+}
+
+variable "root_resource_id" {
+	description = "API Gateway의 root 리소스 ID"
+}
+
+variable "aws_region" {
+  description = "AWS 리전"
 }
