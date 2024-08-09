@@ -29,3 +29,8 @@ variable "root_resource_id" {
 variable "aws_region" {
   description = "AWS 리전"
 }
+
+variable "origin_access_identity_arn" {
+  description = "CloudFront Origin Access Identity의 ARN"
+  type        = string
+}

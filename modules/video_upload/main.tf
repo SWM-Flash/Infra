@@ -3,6 +3,7 @@ module "s3" {
 
 	env_name = var.env_name
 	account_id = var.account_id
+	origin_access_identity_arn = var.origin_access_identity_arn
 }
 
 module "lambda" {

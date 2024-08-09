@@ -39,9 +39,14 @@ module "s3" {
 module "cloudfront" {
   source = "./modules/cloudfront"
 
+  env_name = var.env_name
+
   s3_bucket_domain_name = module.s3.bucket_regional_domain_name
   s3_bucket_name = local.s3_bucket_name
   s3_bucket_arn = module.s3.bucket_arn
+
+  video_s3_bucket_name = module.video_upload.video_output_bucket_name
+  video_s3_bucket_domain_name = module.video_upload.video_output_bucket_domain_name
 }
 
 resource "local_file" "index_html" {
@@ -71,4 +76,6 @@ module "video_upload" {
   api_gateway_execution_arn = module.api_gateway.execution_arn
   rest_api_id = module.api_gateway.rest_api_id
   root_resource_id = module.api_gateway.root_resource_id
+
+  origin_access_identity_arn = module.cloudfront.oai_arn
 }
