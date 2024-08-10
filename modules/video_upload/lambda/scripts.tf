@@ -17,3 +17,13 @@ resource "null_resource" "request_transcoding_script" {
     script_hash = filebase64sha256("${path.module}/../src/request_transcoding/lambda_function.py")
   }
 }
+
+resource "null_resource" "create_solution_script" {
+  provisioner "local-exec" {
+    command = "sh ${path.module}/../src/scripts/create_solution.sh"
+  }
+
+  triggers = {
+    script_hash = filebase64sha256("${path.module}/../src/create_solution/lambda_function.py")
+  }
+}

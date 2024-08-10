@@ -78,4 +78,6 @@ module "video_upload" {
   root_resource_id = module.api_gateway.root_resource_id
 
   origin_access_identity_arn = module.cloudfront.oai_arn
+  api_server_url = var.api_url
+  cloudfront_domain = module.cloudfront.cloudfront_domain_name
 }

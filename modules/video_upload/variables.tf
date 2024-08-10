@@ -34,3 +34,12 @@ variable "origin_access_identity_arn" {
   description = "CloudFront Origin Access Identity의 ARN"
   type        = string
 }
+
+
+variable "api_server_url" {
+	description = "외부 API 서버의 기본 URL"
+}
+
+variable "cloudfront_domain" {
+	description = "CloudFront의 도메인"
+}

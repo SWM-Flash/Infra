@@ -26,3 +26,10 @@ terraform_state/
 /src/*/urllib3*
 /src/*/bin*
 /src/problem_upload_website/index.html
+
+/modules/video_upload/src/*/certifi*
+/modules/video_upload/src/*/charset_normalizer*
+/modules/video_upload/src/*/idna*
+/modules/video_upload/src/*/requests*
+/modules/video_upload/src/*/urllib3*
+/modules/video_upload/src/*/bin*

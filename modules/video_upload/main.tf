@@ -18,6 +18,10 @@ module "lambda" {
 	mediaconvert_role_arn = module.iam.mediaconvert_role_arn
 	mediaconvert_queue_arn = module.mediaconvert.mediaconvert_queue_arn
 	lambda_mediaconvert_role_arn = module.iam.lambda_mediaconvert_role_arn
+
+	api_server_url = var.api_server_url
+	cloudfront_domain = var.cloudfront_domain
+	mediaconvert_job_complete_rule_arn = module.eventbridge.mediaconvert_job_complete_rule_arn
 }
 
 module "api_gateway" {
@@ -49,4 +53,12 @@ module "mediaconvert" {
 	s3_input_bucket_name = module.s3.input_bucket_name
 	s3_output_bucket_name = module.s3.output_bucket_name
 	mediaconvert_iam_role_arn = module.iam.mediaconvert_role_arn
+}
+
+module "eventbridge" {
+	source = "./eventbridge"
+
+	create_solution_lambda_function_arn = module.lambda.create_solution_arn
+	env_name = var.env_name
+	mediaconvert_queue_arn = module.mediaconvert.mediaconvert_queue_arn
 }

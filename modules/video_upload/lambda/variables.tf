@@ -31,3 +31,15 @@ variable "lambda_mediaconvert_role_arn" {
 variable "mediaconvert_queue_arn" {
   description = "MediaConvert Queue의 ARN"
 }
+
+variable "api_server_url" {
+	description = "외부 API 서버의 기본 URL"
+}
+
+variable "cloudfront_domain" {
+	description = "CloudFront의 도메인"
+}
+
+variable "mediaconvert_job_complete_rule_arn" {
+  description = "EventBridge의 MediaConvert 트리거 Rule ARN"
+}
