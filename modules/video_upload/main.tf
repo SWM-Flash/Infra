@@ -24,3 +24,12 @@ module "api_gateway" {
 	aws_region = var.aws_region
 	get_presigned_url_lambda_function_arn = module.lambda.get_presigned_url_arn
 }
+
+module "iam" {
+	source = "./iam"
+
+	env_name = var.env_name
+
+	s3_input_bucket_arn = module.s3.input_bucket_arn
+	s3_output_bucket_arn = module.s3.output_bucket_arn
+}
