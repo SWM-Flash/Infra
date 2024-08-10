@@ -6,6 +6,7 @@ resource "aws_lambda_function" "request_transcoding" {
   handler          = "lambda_function.lambda_handler"
   runtime          = "python3.12"
   source_code_hash = filebase64sha256("${path.module}/../src/request_transcoding/lambda_function.py")
+  timeout          = 20
 
   environment {
     variables = {
