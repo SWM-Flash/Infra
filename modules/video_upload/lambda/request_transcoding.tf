@@ -13,6 +13,7 @@ resource "aws_lambda_function" "request_transcoding" {
       INPUT_BUCKET_NAME = var.input_bucket_name
 			OUTPUT_BUCKET_NAME = var.output_bucket_name
 			MEDIACONVERT_ROLE_ARN = var.mediaconvert_role_arn
+      MEDIACONVERT_QUEUE_ARN = var.mediaconvert_queue_arn
     }
   }
 

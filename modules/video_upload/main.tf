@@ -16,6 +16,7 @@ module "lambda" {
 
 	output_bucket_name = module.s3.output_bucket_name
 	mediaconvert_role_arn = module.iam.mediaconvert_role_arn
+	mediaconvert_queue_arn = module.mediaconvert.mediaconvert_queue_arn
 	lambda_mediaconvert_role_arn = module.iam.lambda_mediaconvert_role_arn
 }
 

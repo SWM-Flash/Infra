@@ -29,7 +29,7 @@ def lambda_handler(event, context):
         'review': review,
         'instagram_id': instagram_id
     }
-    
+
     print(job_metadata)
 
     # MediaConvert 작업 설정
@@ -173,7 +173,8 @@ def lambda_handler(event, context):
         response = mediaconvert_client.create_job(
             Role=os.environ['MEDIACONVERT_ROLE_ARN'],
             UserMetadata=job_metadata,
-            Settings=job_settings
+            Settings=job_settings,
+            Queue=os.environ['MEDIACONVERT_QUEUE_ARN']
         )
         print(f"MediaConvert job created: {response['Job']['Id']}")
     except Exception as e:

@@ -27,3 +27,7 @@ variable "mediaconvert_role_arn" {
 variable "lambda_mediaconvert_role_arn" {
   description = "Lambda의 MediaConvert 컨트롤 IAM Role ARN"
 }
+
+variable "mediaconvert_queue_arn" {
+  description = "MediaConvert Queue의 ARN"
+}
