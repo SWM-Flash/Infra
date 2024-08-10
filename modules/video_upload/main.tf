@@ -33,3 +33,13 @@ module "iam" {
 	s3_input_bucket_arn = module.s3.input_bucket_arn
 	s3_output_bucket_arn = module.s3.output_bucket_arn
 }
+
+module "mediaconvert" {
+	source = "./mediaconvert"
+
+	env_name = var.env_name
+
+	s3_input_bucket_name = module.s3.input_bucket_name
+	s3_output_bucket_name = module.s3.output_bucket_name
+	mediaconvert_iam_role_arn = module.iam.mediaconvert_role_arn
+}
