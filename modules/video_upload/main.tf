@@ -13,6 +13,10 @@ module "lambda" {
 	lambda_execution_role_arn = var.lambda_execution_role_arn
 	input_bucket_name = module.s3.input_bucket_name
 	api_gateway_execution_arn = var.api_gateway_execution_arn
+
+	output_bucket_name = module.s3.output_bucket_name
+	mediaconvert_role_arn = module.iam.mediaconvert_role_arn
+	lambda_mediaconvert_role_arn = module.iam.lambda_mediaconvert_role_arn
 }
 
 module "api_gateway" {

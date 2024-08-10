@@ -15,3 +15,15 @@ variable "api_gateway_execution_arn" {
 variable "input_bucket_name" {
   description = "S3 Input Bucket의 이름"
 }
+
+variable "output_bucket_name" {
+  description = "S3 Output Bucket의 이름"
+}
+
+variable "mediaconvert_role_arn" {
+  description = "MediaConvert의 IAM Role ARN"
+}
+
+variable "lambda_mediaconvert_role_arn" {
+  description = "Lambda의 MediaConvert 컨트롤 IAM Role ARN"
+}
