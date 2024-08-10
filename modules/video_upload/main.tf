@@ -26,7 +26,9 @@ module "api_gateway" {
 	root_resource_id = var.root_resource_id
 	stage_name = var.env_name
 	aws_region = var.aws_region
+
 	get_presigned_url_lambda_function_arn = module.lambda.get_presigned_url_arn
+	request_transcoding_lambda_function_arn = module.lambda.request_transcoding_arn
 }
 
 module "iam" {

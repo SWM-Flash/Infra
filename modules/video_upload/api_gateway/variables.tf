@@ -17,3 +17,7 @@ variable "aws_region" {
 variable "get_presigned_url_lambda_function_arn" {
   description = "API Gateway가 호출할 presigned url Lambda 함수의 ARN"
 }
+
+variable "request_transcoding_lambda_function_arn" {
+  description = "API Gateway가 호출할 request transcoding Lambda 함수의 ARN"
+}
