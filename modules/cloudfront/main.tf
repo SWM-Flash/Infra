@@ -1,5 +1,5 @@
 resource "aws_cloudfront_origin_access_identity" "oai" {
-  comment = "OAI for S3 access"
+  comment = "${var.env_name} OAI for S3 access"
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
