@@ -27,9 +27,9 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   default_root_object = "index.html"
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "S3-${var.video_s3_bucket_name}"
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
+    target_origin_id = "S3-${var.s3_bucket_name}"
 
     forwarded_values {
       query_string = false
@@ -48,8 +48,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     path_pattern     = "/videos/*"  # video S3 버킷에 매핑된 경로
     target_origin_id = "S3-${var.video_s3_bucket_name}"  # video S3 버킷의 origin_id
 
-    allowed_methods  = ["GET", "HEAD"]
-    cached_methods   = ["GET", "HEAD"]
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
+    cached_methods   = ["GET", "HEAD", "OPTIONS"]
 
     forwarded_values {
       query_string = false
