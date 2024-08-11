@@ -1,7 +1,7 @@
 # Lambda 함수 생성
 resource "aws_lambda_function" "get_presigned_url" {
   filename         = "${path.module}/../src/solution_bucket_get_presigned_url.zip"
-  function_name    = "GetPresignedUrlFunction-${var.env_name}"
+  function_name    = "SolutionGetPresignedUrlFunction-${var.env_name}"
   role             = var.lambda_execution_role_arn
   handler          = "lambda_function.lambda_handler"
   runtime          = "python3.12"
