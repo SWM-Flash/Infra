@@ -91,5 +91,5 @@ resource "aws_api_gateway_integration_response" "options_integration_response" {
     "application/json" = ""
   }
 
-	depends_on = [aws_api_gateway_method_response.options_response]
+	depends_on = [aws_api_gateway_integration.options_mock_integration, aws_api_gateway_method_response.options_response]
 }
