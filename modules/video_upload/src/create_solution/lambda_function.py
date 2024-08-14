@@ -4,25 +4,25 @@ import os
 
 def send_to_backend(user_info, video_url):
     problem_id = user_info.get('problem_id')
-    uploader = user_info.get('uploader')
     review = user_info.get('review')
-    instagram_id = user_info.get('instagram_id')
+    token = user_info.get('token')
     
     print(f"Problem ID: {problem_id}")
-    print(f"Uploader: {uploader}")
     print(f"Review: {review}")
-    print(f"Instagram ID: {instagram_id}")
+    print(f"Token: {token}")
     print(video_url)
-
+    
     api_url_full_path = os.environ['API_SERVER_URL'] + f"/problems/{problem_id}/solutions"
     data = {
       "videoUrl": video_url,
-      "uploader": uploader,
-      "review": review,
-      "instagramId": instagram_id
+      "review": review
     }
-    response = requests.post(api_url_full_path, json=data)
-    print(response)
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+    response = requests.post(api_url_full_path, json=data, headers=headers)
+    print(response.json())
 
     return response.json()
 

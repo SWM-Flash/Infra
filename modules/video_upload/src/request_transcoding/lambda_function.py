@@ -9,9 +9,8 @@ def lambda_handler(event, context):
 
     problem_id = body.get('problem_id', 'unknown')
     video_name = body.get('video_name', 'unknown')
-    uploader = body.get('uploader', 'unknown')
     review = body.get('review', 'unknown')
-    instagram_id = body.get('instagram_id', 'unknown')
+    token = body.get('token', 'unknown')
 
     # MediaConvert 엔드포인트 가져오기
     mediaconvert_client = boto3.client('mediaconvert')
@@ -25,9 +24,8 @@ def lambda_handler(event, context):
     job_metadata = {
         'problem_id': problem_id,
         'video_name': video_name,
-        'uploader': uploader,
         'review': review,
-        'instagram_id': instagram_id
+        'token': token
     }
 
     print(job_metadata)
