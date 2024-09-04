@@ -81,3 +81,11 @@ module "video_upload" {
   api_server_url = var.api_url
   cloudfront_domain = module.cloudfront.cloudfront_domain_name
 }
+
+
+# network
+module "network" {
+  source = "./modules/network"
+
+  env_suffix = var.env_name
+}
