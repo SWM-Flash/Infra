@@ -88,4 +88,5 @@ module "network" {
   source = "./modules/network"
 
   env_suffix = var.env_name
+  account_id = local.account_id
 }
