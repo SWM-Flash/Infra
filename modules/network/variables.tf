@@ -35,3 +35,28 @@ variable "domain" {
   type = string
 	default = "wonyangs.com"
 }
+
+variable "region" {
+  type = string
+  default = "ap-northeast-2"
+}
+
+variable "tpl_path" {
+  type = string
+  default = "service.config.json.tpl"
+}
+
+variable "scaling_max_capacity" {
+  type = number
+  default = 3
+}
+
+variable "scaling_min_capacity" {
+  type = number
+  default = 1
+}
+
+variable "cpu_or_memory_limit" {
+  type = number
+  default = 70
+}
