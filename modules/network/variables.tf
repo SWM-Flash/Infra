@@ -4,7 +4,7 @@ variable "env_suffix" {
 
 variable "az_count" {
   type    = number
-  default = 4
+  default = 2
 }
 
 variable "container_port" {
@@ -33,12 +33,10 @@ variable "elb_account_id" {
 
 variable "domain" {
   type = string
-	default = "wonyangs.com"
 }
 
 variable "region" {
   type = string
-  default = "ap-northeast-2"
 }
 
 variable "tpl_path" {

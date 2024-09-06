@@ -90,4 +90,5 @@ module "network" {
   env_suffix = var.env_name
   account_id = local.account_id
   region = var.aws_region
+  domain = var.domain_name
 }

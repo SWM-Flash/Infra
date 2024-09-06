@@ -20,6 +20,11 @@ variable "env_name" {
   type        = string
 }
 
+variable "domain_name" {
+  description = "도메인 주소"
+  type        = string
+}
+
 # IAM
 variable "lambda_iam_role_name" {
   description = "lambda 함수의 IAM Role 이름"

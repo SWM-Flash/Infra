@@ -18,6 +18,9 @@ dplan:
 destroy:
 	@terraform destroy $(VARFILE)
 
+refresh:
+	@terraform refresh $(VARFILE)
+
 re:
 	@make destroy
 	@make clean
