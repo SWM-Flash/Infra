@@ -14,7 +14,11 @@ def send_to_backend(image_url, difficulty, gym_id, sector_id):
         'imageUrl': image_url_full_path,
         'difficulty': difficulty
     }
+
     response = requests.post(api_url_full_path, json=data)
+    print(f"Response status code: {response.status_code}")
+    print(f"Response content: {response.content}")
+
     return response.json()
 
 def lambda_handler(event, context):
