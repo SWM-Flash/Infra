@@ -25,6 +25,12 @@
         "value": "${host_port}"
       }
     ],
+    "environmentFiles": [
+      {
+        "value": "${env_file}",
+        "type": "s3"
+      }
+    ],
     "ulimits": [
       {
         "name": "nofile",

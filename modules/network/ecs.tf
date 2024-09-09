@@ -23,6 +23,11 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_s3_readonly" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+}
+
 locals {
   service_template = templatefile("${path.module}/${var.tpl_path}", {
     region             = var.region
@@ -32,6 +37,7 @@ locals {
     host_port          = var.host_port
     app_name           = var.app_name
     env_suffix         = var.env_suffix
+    env_file           = "${aws_s3_bucket.environment_file_bucket.arn}/upload_server.env"
   })
 }
 
