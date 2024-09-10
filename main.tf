@@ -85,7 +85,7 @@ module "video_upload" {
 
 # network
 module "network" {
-  source = "./modules/network"
+  source = "./modules/network2"
 
   env_suffix = var.env_name
   account_id = local.account_id
