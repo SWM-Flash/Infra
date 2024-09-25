@@ -7,12 +7,13 @@ import json
 DOMAIN_URL = os.environ['DOMAIN_URL']
 API_URL = os.environ['API_URL']
 
-def send_to_backend(image_url, difficulty, gym_id, sector_id, token):
+def send_to_backend(image_url, difficulty, image_source, gym_id, sector_id, token):
     image_url_full_path = f"https://{DOMAIN_URL}/{image_url}"
     api_url_full_path = API_URL + f"/admin/gyms/{gym_id}/sectors/{sector_id}/problems"
     data = {
         'imageUrl': image_url_full_path,
-        'difficulty': difficulty
+        'difficulty': difficulty,
+        'imageSource': image_source
     }
     
     headers = {
@@ -37,18 +38,19 @@ def lambda_handler(event, context):
 
     image_url = body.get('image_url')
     difficulty = body.get('difficulty')
+    image_source = body.get('image_source')
     gym_id = body.get('gym_id')
     sector_id = body.get('sector_id')
     token = body.get('token')
 
-    if not image_url or not difficulty or not gym_id or not sector_id or not token:
+    if not image_url or not difficulty or not image_source or not gym_id or not sector_id or not token:
         return {
             'statusCode': 400,
             'body': json.dumps('Missing one or more required fields: image_url, difficulty, gym_id, sector_id')
         }
 
     try:
-        response = send_to_backend(image_url, difficulty, gym_id, sector_id, token)
+        response = send_to_backend(image_url, difficulty, image_source, gym_id, sector_id, token)
     except Exception as e:
         return {
             'statusCode': 500,

@@ -7,6 +7,8 @@ resource "aws_lambda_function" "create_problem" {
   runtime          = "python3.12"
   source_code_hash = filebase64sha256(var.create_problem_lambda_function_code_path)
 
+  timeout          = 10
+
   environment {
     variables = {
       DOMAIN_URL  = var.image_domain_name

@@ -28,6 +28,9 @@
         <label for="sector_id">Sector ID:</label>
         <input type="number" id="sector_id" name="sector_id" required><br><br>
 
+        <label for="image_source">Image Source:</label>
+        <input type="text" id="image_source" name="image_source" required><br><br>
+
         <label for="access_token">Access Token:</label>
         <input type="text" id="access_token" name="access_token" required><br><br>
 
@@ -44,6 +47,7 @@
             const difficulty = document.getElementById('difficulty').value;
             const gym_id = document.getElementById('gym_id').value;
             const sector_id = document.getElementById('sector_id').value;
+            const image_source = document.getElementById('image_source').value;
             const access_token = document.getElementById('access_token').value;
 		
 	        const presigned_url = "${api_gateway_url}/problem/get-presigned-url";
@@ -76,6 +80,7 @@
                                         let postData = {
                                             image_url: fileName,
                                             difficulty: difficulty,
+                                            image_source: image_source,
                                             gym_id: gym_id,
                                             sector_id: sector_id,
                                             token: access_token
