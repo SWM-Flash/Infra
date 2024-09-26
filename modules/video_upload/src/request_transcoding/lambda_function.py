@@ -142,7 +142,7 @@ def lambda_handler(event, context):
             "OutputGroupSettings": {
               "Type": "HLS_GROUP_SETTINGS",
               "HlsGroupSettings": {
-                "SegmentLength": 6,
+                "SegmentLength": 2,
                 "Destination": f"s3://{os.environ['OUTPUT_BUCKET_NAME']}/videos/",
                 "MinSegmentLength": 0
               }
