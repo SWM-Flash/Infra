@@ -20,6 +20,7 @@
             <option value="보라">보라</option>
             <option value="회색">회색</option>
             <option value="갈색">갈색</option>
+            <option value="시크릿">시크릿</option>
         </select><br><br>
 
         <label for="gym_id">Gym ID:</label>
