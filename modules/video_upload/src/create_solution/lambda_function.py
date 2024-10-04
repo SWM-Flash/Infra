@@ -12,11 +12,26 @@ def send_to_backend(user_info, video_url):
     print(f"Token: {token}")
     print(video_url)
     
-    api_url_full_path = os.environ['API_SERVER_URL'] + f"/problems/{problem_id}/solutions"
-    data = {
-      "videoUrl": video_url,
-      "review": review
-    }
+    nickname = user_info.get('nickname')
+    instagram_id = user_info.get('instagram_id')
+    print(f"nickname: {nickname}")
+    print(f"instagram_id: {instagram_id}")
+    
+    if nickname and instagram_id:
+      api_url_full_path = os.environ['API_SERVER_URL'] + f"/admin/problems/{problem_id}/solutions"
+      data = {
+        "nickName": nickname,
+        "instagramId": instagram_id,
+        "videoUrl": video_url,
+        "review": review
+      }
+    else:
+      api_url_full_path = os.environ['API_SERVER_URL'] + f"/problems/{problem_id}/solutions"
+      data = {
+        "videoUrl": video_url,
+        "review": review
+      }
+
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"

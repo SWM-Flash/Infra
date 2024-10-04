@@ -11,6 +11,20 @@ def lambda_handler(event, context):
     video_name = body.get('video_name', 'unknown')
     review = body.get('review', 'unknown')
     token = body.get('token', 'unknown')
+    
+    # 사용자 메타데이터 설정
+    job_metadata = {
+        'problem_id': problem_id,
+        'video_name': video_name,
+        'review': review,
+        'token': token
+    }
+    
+    nickname = body.get('nickname')
+    instagramId = body.get('instagramId')
+    if nickname and instagramId:
+      job_metadata["nickname"] = nickname
+      job_metadata["instagram_id"] = instagramId
 
     # MediaConvert 엔드포인트 가져오기
     mediaconvert_client = boto3.client('mediaconvert')
@@ -20,13 +34,6 @@ def lambda_handler(event, context):
     # MediaConvert 클라이언트의 엔드포인트 설정
     mediaconvert_client = boto3.client('mediaconvert', endpoint_url=endpoint_url)
     
-    # 사용자 메타데이터 설정
-    job_metadata = {
-        'problem_id': problem_id,
-        'video_name': video_name,
-        'review': review,
-        'token': token
-    }
 
     print(job_metadata)
 
