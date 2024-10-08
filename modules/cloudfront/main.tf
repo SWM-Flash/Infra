@@ -31,17 +31,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
     target_origin_id = "S3-${var.s3_bucket_name}"
 
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
+
+    cache_policy_id                = "658327ea-f89d-4fab-a63d-7e88639e58f6"  # CachingOptimized
+    origin_request_policy_id       = "88a5eaf4-2fd4-4709-b370-b4c650ea3fcf"  # CORS-S3Origin
+    response_headers_policy_id     = "5cc3b908-e619-4b99-88e5-2cf7f45965bd"  # Managed-CORS-With-Preflight
   }
 
   ordered_cache_behavior {
@@ -51,17 +45,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD", "OPTIONS"]
 
-    forwarded_values {
-      query_string = false
-      cookies {
-        forward = "none"
-      }
-    }
-
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
+
+    cache_policy_id                = "658327ea-f89d-4fab-a63d-7e88639e58f6"  # CachingOptimized
+    origin_request_policy_id       = "88a5eaf4-2fd4-4709-b370-b4c650ea3fcf"  # CORS-S3Origin
+    response_headers_policy_id     = "5cc3b908-e619-4b99-88e5-2cf7f45965bd"  # Managed-CORS-With-Preflight
   }
 
   restrictions {
