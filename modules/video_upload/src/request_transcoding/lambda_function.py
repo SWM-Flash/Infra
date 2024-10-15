@@ -9,6 +9,7 @@ def lambda_handler(event, context):
 
     problem_id = body.get('problem_id', 'unknown')
     video_name = body.get('video_name', 'unknown')
+    perceivedDifficulty = body.get('perceivedDifficulty', 'unknown')
     review = body.get('review', 'unknown')
     token = body.get('token', 'unknown')
     
@@ -16,6 +17,7 @@ def lambda_handler(event, context):
     job_metadata = {
         'problem_id': problem_id,
         'video_name': video_name,
+        'perceivedDifficulty': perceivedDifficulty,
         'review': review,
         'token': token
     }

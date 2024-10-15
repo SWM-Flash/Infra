@@ -4,10 +4,12 @@ import os
 
 def send_to_backend(user_info, video_url):
     problem_id = user_info.get('problem_id')
+    perceivedDifficulty = user_info.get('perceivedDifficulty')
     review = user_info.get('review')
     token = user_info.get('token')
     
     print(f"Problem ID: {problem_id}")
+    print(f"Perceived Difficulty: {perceivedDifficulty}")
     print(f"Review: {review}")
     print(f"Token: {token}")
     print(video_url)
@@ -22,6 +24,7 @@ def send_to_backend(user_info, video_url):
       data = {
         "nickName": nickname,
         "instagramId": instagram_id,
+        "perceivedDifficulty": perceivedDifficulty,
         "videoUrl": video_url,
         "review": review
       }
@@ -29,6 +32,7 @@ def send_to_backend(user_info, video_url):
       api_url_full_path = os.environ['API_SERVER_URL'] + f"/problems/{problem_id}/solutions"
       data = {
         "videoUrl": video_url,
+        "perceivedDifficulty": perceivedDifficulty,
         "review": review
       }
 
