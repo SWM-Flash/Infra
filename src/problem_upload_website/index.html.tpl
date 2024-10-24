@@ -21,8 +21,8 @@
             <option value="회색">회색</option>
             <option value="갈색">갈색</option>
             <option value="검정">검정</option>
-            <option value="검정">흰색</option>
-            <option value="검정">남색</option>
+            <option value="흰색">흰색</option>
+            <option value="남색">남색</option>
             <option value="시크릿">시크릿</option>
         </select><br><br>
 
