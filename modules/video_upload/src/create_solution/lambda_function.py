@@ -1,3 +1,5 @@
+import os
+
 import json
 import requests
 import os
@@ -19,21 +21,84 @@ def send_to_backend(user_info, video_url):
     print(f"nickname: {nickname}")
     print(f"instagram_id: {instagram_id}")
     
+    thumbnailImageUrl = user_info.get('thumbnailImageUrl')
+    solvedDate = user_info.get('solvedDate')
+    print(f"thumbnailImageUrl: {thumbnailImageUrl}")
+    print(f"solvedDate: {solvedDate}")
+    
+    problem_info = json.loads(user_info.get('problem_info', '{}'))
+    gymId = problem_info.get('gymId')
+    sectorId = problem_info.get('sectorId')
+    holdId = problem_info.get('holdId')
+    difficulty = problem_info.get('difficulty')
+    print(f"gymId: {gymId}")
+    print(f"sectorId: {sectorId}")
+    print(f"holdId: {holdId}")
+    print(f"difficulty: {difficulty}")
+    
+    # 어드민 업로드
     if nickname and instagram_id:
+      if gymId:
+        problem_create_api_url = os.environ['API_SERVER_URL'] + f"/gyms/{gymId}/sectors/{sectorId}/problems"
+        data = {
+            "imageUrl": None,
+            "difficulty": difficulty,
+            "imageSource": nickname,
+            "thumbnailSolutionId": None,
+            "holdId": holdId
+        }
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+        response = requests.post(problem_create_api_url, json=data, headers=headers)
+        print(response.json())
+        problem_id = response.json()["id"]
+
       api_url_full_path = os.environ['API_SERVER_URL'] + f"/admin/problems/{problem_id}/solutions"
       data = {
         "nickName": nickname,
         "instagramId": instagram_id,
         "perceivedDifficulty": perceivedDifficulty,
         "videoUrl": video_url,
-        "review": review
+        "review": review,
+        "thumbnailImageUrl": thumbnailImageUrl,
+        "solvedDate": solvedDate
       }
-    else:
+    elif gymId: # 문제를 생성하면서 업로드
+        problem_create_api_url = os.environ['API_SERVER_URL'] + f"/gyms/{gymId}/sectors/{sectorId}/problems"
+        data = {
+            "imageUrl": None,
+            "difficulty": difficulty,
+            "imageSource": nickname,
+            "thumbnailSolutionId": None,
+            "holdId": holdId
+        }
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
+        response = requests.post(problem_create_api_url, json=data, headers=headers)
+        print(response.json())
+        problem_id = response.json()["id"]
+        
+        api_url_full_path = os.environ['API_SERVER_URL'] + f"/problems/{problem_id}/solutions"
+        data = {
+            "thumbnailImageUrl": thumbnailImageUrl,
+            "videoUrl": video_url,
+            "solvedDate": solvedDate,
+            "perceivedDifficulty": perceivedDifficulty,
+            "review": review
+        }
+        
+    else: # 기존 문제에 업로드
       api_url_full_path = os.environ['API_SERVER_URL'] + f"/problems/{problem_id}/solutions"
       data = {
-        "videoUrl": video_url,
-        "perceivedDifficulty": perceivedDifficulty,
-        "review": review
+          "thumbnailImageUrl": thumbnailImageUrl,
+          "videoUrl": video_url,
+          "solvedDate": solvedDate,
+          "perceivedDifficulty": perceivedDifficulty,
+          "review": review
       }
 
     headers = {
